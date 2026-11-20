@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+/* ---------- Palette: plum + cream (memorial, calm, dignified) ---------- */
+@theme {
+  --color-cream: #faf6f3;
+  --color-cream-2: #f1ebe7;
+  --color-line: #e4d9d3;
+  --color-ink: #1f1419;
+  --color-muted: #6b5b63;
+
+  --color-plum-50: #f8f0f4;
+  --color-plum-100: #f1e4ea;
+  --color-plum-200: #e2c9d5;
+  --color-plum-400: #a57a90;
+  --color-plum-500: #8b5e75;
+  --color-plum-600: #764d62;
+  --color-plum-700: #572b4c;
+  --color-plum-800: #3d1f35;
+  --color-plum-900: #2a1424;
+
+  --color-gold: #b8924a;
+  --color-gold-soft: #f6ecd6;
+
+  --color-ok: #2f7d5b;
+  --color-ok-soft: #e6f4ec;
+  --color-warn: #96590a;
+  --color-warn-soft: #fdf3d9;
+  --color-bad: #b4233c;
+  --color-bad-soft: #fde8ec;
+
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-arabic: 'Noto Naskh Arabic', 'Amiri', serif;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.01em; }
+  ::selection { background: var(--color-plum-200); }
+  :focus-visible { outline: 2px solid var(--color-plum-500); outline-offset: 2px; }
+}
+
+@layer components {
+  .card {
+    background: var(--color-cream-2);
+    border: 1px solid var(--color-line);
+    border-radius: 1.25rem;
+    box-shadow: 0 1px 2px rgb(42 20 36 / 0.04), 0 8px 24px -12px rgb(42 20 36 / 0.12);
+  }
+  .card-white { background: #fff; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    padding: .6rem 1.1rem; border-radius: 999px; font-size: .875rem; font-weight: 600;
+    transition: background-color .15s, transform .1s, box-shadow .15s, opacity .15s;
+    cursor: pointer; white-space: nowrap;
+  }
+  .btn:active { transform: scale(.97); }
+  .btn:disabled { opacity: .55; cursor: not-allowed; }
+  .btn-primary { background: var(--color-plum-500); color: #fff; box-shadow: 0 6px 16px -8px rgb(139 94 117 / .8); }
+  .btn-primary:hover:not(:disabled) { background: var(--color-plum-600); }
+  .btn-ghost { background: #fff; color: var(--color-plum-800); border: 1px solid var(--color-line); }
+  .btn-ghost:hover:not(:disabled) { background: var(--color-plum-50); }
+  .btn-danger { background: var(--color-bad-soft); color: var(--color-bad); border: 1px solid #f6c9d1; }
+  .btn-danger:hover:not(:disabled) { background: #fbd5dc; }
+  .btn-sm { padding: .4rem .8rem; font-size: .8rem; }
+
+  .input {
+    width: 100%; background: #fff; border: 1px solid var(--color-line); border-radius: .85rem;
+    padding: .65rem .9rem; font-size: .9rem; color: var(--color-ink);
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .input::placeholder { color: #a8999f; }
+  .input:focus { outline: none; border-color: var(--color-plum-500); box-shadow: 0 0 0 3px rgb(139 94 117 / .18); }
+  .label { display: block; font-size: .78rem; font-weight: 600; color: var(--color-muted); margin-bottom: .35rem; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: .3rem; padding: .15rem .6rem;
+    border-radius: 999px; font-size: .72rem; font-weight: 600; border: 1px solid transparent;
+  }
+  .badge-plum { background: var(--color-plum-100); color: var(--color-plum-700); border-color: var(--color-plum-200); }
+  .badge-ok { background: var(--color-ok-soft); color: var(--color-ok); border-color: #c4e6d4; }
+  .badge-warn { background: var(--color-warn-soft); color: var(--color-warn); border-color: #f3dfa3; }
+  .badge-bad { background: var(--color-bad-soft); color: var(--color-bad); border-color: #f6c9d1; }
+
+  .skeleton { background: linear-gradient(90deg, #ece3de 25%, #f6f0ec 50%, #ece3de 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; border-radius: .75rem; }
+}
+
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+@keyframes pop { from { opacity: 0; transform: translateY(8px) scale(.98); } to { opacity: 1; transform: none; } }
+.pop { animation: pop .18s ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .pop, .skeleton { animation: none; }
+}

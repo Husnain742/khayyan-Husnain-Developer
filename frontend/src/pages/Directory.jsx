@@ -114,7 +114,7 @@ export default function Directory() {
                 <button onClick={() => setSelected(p)} className="card card-white w-full h-full text-left overflow-hidden flex flex-col hover:-translate-y-1 hover:shadow-xl transition-all cursor-pointer">
                   <Avatar src={p.imageName} name={p.name} className="w-full aspect-[4/4.2]" rounded="rounded-none" textSize="text-5xl" />
                   <div className="p-4 flex-1 flex flex-col">
-                    <span className="badge badge-plum w-max">{p.wand.replace(' Wand', '')}</span>
+                    <span className="badge badge-plum w-max">{(p.wand || '').replace(' Wand', '')}</span>
                     <h2 className="font-display text-lg font-bold mt-2 leading-snug">{p.name}</h2>
                     <p className="text-sm text-muted">Waldiyat: {p.fatherName}</p>
                     <p className="mt-auto pt-3 text-xs font-semibold text-plum-600 inline-flex items-center gap-1.5">

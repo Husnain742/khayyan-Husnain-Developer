@@ -127,7 +127,7 @@ export default function Records() {
                   <p className="font-bold truncate">{r.name}</p>
                   <p className="text-sm text-muted truncate">Waldiyat: {r.fatherName}</p>
                   <div className="flex flex-wrap items-center gap-2 mt-1.5 md:hidden">
-                    <span className="badge badge-plum">{r.wand.replace(' Wand', '')}</span>
+                    <span className="badge badge-plum">{(r.wand || '').replace(' Wand', '')}</span>
                     <span className="text-xs text-muted">{formatDate(r.dateOfDemise)}</span>
                   </div>
                 </div>

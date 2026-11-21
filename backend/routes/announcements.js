@@ -25,7 +25,7 @@ const updateSchema = z.object({
 
 const withExpiry = (doc) => ({
   ...doc,
-  expiresAt: new Date(new Date(doc.createdAt).getTime() + ANNOUNCEMENT_TTL_SECONDS * 1000).toISOString(),
+  expiresAt: Number.isNaN(new Date(doc.createdAt).getTime()) ? null : new Date(new Date(doc.createdAt).getTime() + ANNOUNCEMENT_TTL_SECONDS * 1000).toISOString(),
 });
 
 // PUBLIC

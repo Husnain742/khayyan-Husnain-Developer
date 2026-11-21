@@ -34,6 +34,16 @@ app.use(rateLimit({ windowMs: 60 * 1000, limit: 180, standardHeaders: 'draft-7',
 
 app.get('/', (req, res) => res.json({ ok: true, service: 'khayyan-portal-api' }));
 
+app.get('/api/health', async (req, res) => {
+  try {
+    await connectDB();
+    res.status(200).json({ ok: true, db: 'up' });
+  } catch (err) {
+    console.error('Health check DB connection failed:', err?.message);
+    res.status(503).json({ ok: false, db: 'down', message: 'Database abhi available nahi hai.' });
+  }
+});
+
 // Refuse to run half-configured (fail closed instead of running without auth).
 const problems = configProblems();
 if (problems.length) {
